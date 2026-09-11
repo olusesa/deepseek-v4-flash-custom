@@ -1,4 +1,4 @@
-import os, subprocess, threading, time, urllib.request
+import os, subprocess, threading, time, urllib.request, sys
 from pathlib import Path
 import modal
 
@@ -18,10 +18,7 @@ API_KEY=os.getenv('DEEPSEEK_MODAL_API_KEY','')
 HF_CACHE=modal.Volume.from_name(os.getenv('HF_VOLUME_NAME','deepseek-v4-flash-hf-cache'),create_if_missing=True)
 app=modal.App(APP_NAME)
 
-image=(
-    modal.Image.from_registry(SGLANG_IMAGE)
-    .pip_install('fastapi>=0.115,<1','uvicorn[standard]>=0.34,<1','httpx>=0.28,<1', force_build=True)
-)
+image=modal.Image.from_registry(SGLANG_IMAGE)
 
 def build_sglang_command():
     cmd=['python3','-m','sglang.launch_server','--model-path',MODEL_ID,'--served-model-name',SERVED_MODEL_NAME,'--host','127.0.0.1','--port',str(SGLANG_PORT),'--trust-remote-code','--tp',str(TP_SIZE),'--moe-runner-backend','flashinfer_mxfp4','--attention-backend','dsv4','--mem-fraction-static',str(MEM_FRACTION_STATIC),'--chunked-prefill-size',str(CHUNKED_PREFILL_SIZE),'--max-running-requests',str(MAX_RUNNING_REQUESTS),'--reasoning-parser','deepseek-v4','--tool-call-parser','deepseekv4','--max-model-len',str(MAX_MODEL_LEN)]
@@ -31,6 +28,12 @@ def build_sglang_command():
 class DeepSeekServer:
     @modal.enter()
     def start(self):
+        subprocess.check_call([sys.executable, '-m', 'pip', 'install', '-q', 'fastapi>=0.115,<1', 'uvicorn[standard]>=0.34,<1', 'httpx>=0.28,<1', 'typing_extensions>=4.14,<5'])
+        modal_deps = '/__modal/deps'
+        if modal_deps in sys.path:
+            sys.path.remove(modal_deps)
+        sys.path.append(modal_deps)
+
         from fastapi import FastAPI, Header, HTTPException, Request
         from fastapi.responses import Response
         import httpx, uvicorn
