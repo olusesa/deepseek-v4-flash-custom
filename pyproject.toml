@@ -1,0 +1,7 @@
+[project]
+name='deepseek-v4-flash-modal-opencode'
+version='2.0.0'
+requires-python='>=3.11'
+dependencies=['modal','fastapi>=0.115,<1','uvicorn[standard]>=0.34,<1','httpx>=0.28,<1']
+[tool.pytest.ini_options]
+testpaths=['tests']
