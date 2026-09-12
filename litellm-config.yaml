@@ -1,0 +1,9 @@
+model_list:
+  - model_name: deepseek-v4-flash
+    litellm_params:
+      model: openai/deepseek-v4-flash
+      api_base: os.environ/MODAL_DEEPSEEK_BASE_URL
+      api_key: os.environ/MODAL_DEEPSEEK_API_KEY
+
+general_settings:
+  master_key: os.environ/LITELLM_MASTER_KEY

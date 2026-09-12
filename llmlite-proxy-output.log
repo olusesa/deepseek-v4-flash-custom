@@ -1,0 +1,185 @@
+INFO:     Started server process [516399]
+INFO:     Waiting for application startup.
+
+   ██╗     ██╗████████╗███████╗██╗     ██╗     ███╗   ███╗
+   ██║     ██║╚══██╔══╝██╔════╝██║     ██║     ████╗ ████║
+   ██║     ██║   ██║   █████╗  ██║     ██║     ██╔████╔██║
+   ██║     ██║   ██║   ██╔══╝  ██║     ██║     ██║╚██╔╝██║
+   ███████╗██║   ██║   ███████╗███████╗███████╗██║ ╚═╝ ██║
+   ╚══════╝╚═╝   ╚═╝   ╚══════╝╚══════╝╚══════╝╚═╝     ╚═╝
+
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:4000 (Press CTRL+C to quit)
+13:25:04 - LiteLLM Proxy:ERROR: auth_exception_handler.py:118 - litellm.proxy.proxy_server.user_api_key_auth(): Exception occured - No api key passed in.
+Requester IP Address:127.0.0.1
+Traceback (most recent call last):
+  File "/home/ubuntu/deepseek-opencode/deepseek-v4-2/.venv-litellm/lib/python3.14/site-packages/litellm/proxy/auth/user_api_key_auth.py", line 1628, in _user_api_key_auth_builder
+    raise Exception("No api key passed in.")
+Exception: No api key passed in.
+
+[1;37m#------------------------------------------------------------#[0m
+[1;37m#                                                            #[0m
+[1;37m#              'I don't like how this works...'               #[0m
+[1;37m#        https://github.com/BerriAI/litellm/issues/new        #[0m
+[1;37m#                                                            #[0m
+[1;37m#------------------------------------------------------------#[0m
+
+ Thank you for using LiteLLM! - Krrish & Ishaan
+
+
+
+[1;31mGive Feedback / Get Help: https://github.com/BerriAI/litellm/issues/new[0m
+
+
+[32mLiteLLM: Proxy initialized with Config, Set models:[0m
+[32m    deepseek-v4-flash[0m
+INFO:     127.0.0.1:36700 - "GET /health HTTP/1.1" 401 Unauthorized
+13:25:47 - LiteLLM Proxy:ERROR: auth_exception_handler.py:118 - litellm.proxy.proxy_server.user_api_key_auth(): Exception occured - No api key passed in.
+Requester IP Address:127.0.0.1
+Traceback (most recent call last):
+  File "/home/ubuntu/deepseek-opencode/deepseek-v4-2/.venv-litellm/lib/python3.14/site-packages/litellm/proxy/auth/user_api_key_auth.py", line 1628, in _user_api_key_auth_builder
+    raise Exception("No api key passed in.")
+Exception: No api key passed in.
+INFO:     127.0.0.1:32926 - "GET /health HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:44604 - "GET /v1/models HTTP/1.1" 200 OK
+13:28:18 - LiteLLM Proxy:ERROR: common_request_processing.py:1437 - litellm.proxy.proxy_server._handle_llm_api_exception(): Exception occured - litellm.InternalServerError: InternalServerError: OpenAIException - Missing credentials. Please pass an `api_key`, `workload_identity`, `admin_api_key`, or set the `OPENAI_API_KEY` or `OPENAI_ADMIN_KEY` environment variable.. Received Model Group=deepseek-v4-flash
+Available Model Group Fallbacks=None LiteLLM Retried: 2 times, LiteLLM Max Retries: 2
+Traceback (most recent call last):
+  File "/home/ubuntu/deepseek-opencode/deepseek-v4-2/.venv-litellm/lib/python3.14/site-packages/litellm/llms/openai/openai.py", line 864, in acompletion
+    openai_aclient: AsyncOpenAI = self._get_openai_client(
+                                  ~~~~~~~~~~~~~~~~~~~~~~~^
+        is_async=True,
+        ^^^^^^^^^^^^^^
+    ...<7 lines>...
+        shared_session=shared_session,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/ubuntu/deepseek-opencode/deepseek-v4-2/.venv-litellm/lib/python3.14/site-packages/litellm/llms/openai/openai.py", line 373, in _get_openai_client
+    _new_client: OpenAI | AsyncOpenAI = AsyncOpenAI(
+                                        ~~~~~~~~~~~^
+        api_key=api_key,
+        ^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+        organization=organization,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/ubuntu/deepseek-opencode/deepseek-v4-2/.venv-litellm/lib/python3.14/site-packages/openai/_client.py", line 837, in __init__
+    raise OpenAIError(
+        "Missing credentials. Please pass an `api_key`, `workload_identity`, `admin_api_key`, or set the `OPENAI_API_KEY` or `OPENAI_ADMIN_KEY` environment variable."
+    )
+openai.OpenAIError: Missing credentials. Please pass an `api_key`, `workload_identity`, `admin_api_key`, or set the `OPENAI_API_KEY` or `OPENAI_ADMIN_KEY` environment variable.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/ubuntu/deepseek-opencode/deepseek-v4-2/.venv-litellm/lib/python3.14/site-packages/litellm/main.py", line 647, in acompletion
+    response = await _resolve_dispatched_chat_response(init_response)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/deepseek-opencode/deepseek-v4-2/.venv-litellm/lib/python3.14/site-packages/litellm/main.py", line 712, in _resolve_dis... (litellm_truncated skipped 6948 chars. Truncation is a stdout logging safeguard. Full, untruncated data is logged to logging callbacks (OTEL, Datadog, etc.) and at DEBUG level. To increase the truncation limit, set `MAX_STRING_LENGTH_STDOUT_LOG` in your env.) ...n3.14/site-packages/litellm/utils.py", line 2065, in wrapper_async
+    raise e
+  File "/home/ubuntu/deepseek-opencode/deepseek-v4-2/.venv-litellm/lib/python3.14/site-packages/litellm/utils.py", line 1861, in wrapper_async
+    result = await original_function(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/deepseek-opencode/deepseek-v4-2/.venv-litellm/lib/python3.14/site-packages/litellm/main.py", line 700, in acompletion
+    raise exception_type(
+          ~~~~~~~~~~~~~~^
+        model=model,
+        ^^^^^^^^^^^^
+    ...<3 lines>...
+        extra_kwargs=kwargs,
+        ^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/ubuntu/deepseek-opencode/deepseek-v4-2/.venv-litellm/lib/python3.14/site-packages/litellm/litellm_core_utils/exception_mapping_utils.py", line 2675, in exception_type
+    raise e  # it's already mapped
+    ^^^^^^^
+  File "/home/ubuntu/deepseek-opencode/deepseek-v4-2/.venv-litellm/lib/python3.14/site-packages/litellm/litellm_core_utils/exception_mapping_utils.py", line 2436, in exception_type
+    _map_openai_exception(
+    ~~~~~~~~~~~~~~~~~~~~~^
+        model=model,
+        ^^^^^^^^^^^^
+    ...<5 lines>...
+        extra_information=extra_information,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/ubuntu/deepseek-opencode/deepseek-v4-2/.venv-litellm/lib/python3.14/site-packages/litellm/litellm_core_utils/exception_mapping_utils.py", line 449, in _map_openai_exception
+    raise InternalServerError(
+    ...<5 lines>...
+    )
+litellm.exceptions.InternalServerError: litellm.InternalServerError: InternalServerError: OpenAIException - Missing credentials. Please pass an `api_key`, `workload_identity`, `admin_api_key`, or set the `OPENAI_API_KEY` or `OPENAI_ADMIN_KEY` environment variable.. Received Model Group=deepseek-v4-flash
+Available Model Group Fallbacks=None LiteLLM Retried: 2 times, LiteLLM Max Retries: 2
+INFO:     127.0.0.1:47476 - "POST /v1/chat/completions HTTP/1.1" 500 Internal Server Error
+INFO:     127.0.0.1:55754 - "HEAD /api/hello HTTP/1.1" 404 Not Found
+13:33:24 - LiteLLM Proxy:ERROR: auth_exception_handler.py:118 - litellm.proxy.proxy_server.user_api_key_auth(): Exception occured - No connected db.
+Requester IP Address:127.0.0.1
+INFO:     127.0.0.1:44522 - "POST /v1/messages?beta=true HTTP/1.1" 400 Bad Request
+13:33:24 - LiteLLM Proxy:ERROR: auth_exception_handler.py:118 - litellm.proxy.proxy_server.user_api_key_auth(): Exception occured - No connected db.
+Requester IP Address:127.0.0.1
+INFO:     127.0.0.1:44538 - "POST /v1/messages?beta=true HTTP/1.1" 400 Bad Request
+WARNING:  Invalid HTTP request received.
+INFO:     118.193.36.56:53878 - "GET / HTTP/1.1" 200 OK
+INFO:     118.193.36.56:53884 - "GET /swagger/favicon.png HTTP/1.1" 200 OK
+INFO:     118.193.36.56:53890 - "GET /robots.txt HTTP/1.1" 404 Not Found
+INFO:     118.193.36.56:53894 - "GET /sitemap.xml HTTP/1.1" 404 Not Found
+INFO:     118.193.36.56:53908 - "GET /swagger/swagger-ui-bundle.js HTTP/1.1" 200 OK
+INFO:     118.193.36.56:53220 - "GET /config.json HTTP/1.1" 404 Not Found
+INFO:     118.193.36.56:53228 - "GET /sse HTTP/1.1" 404 Not Found
+18:55:43 - LiteLLM Proxy:ERROR: auth_exception_handler.py:118 - litellm.proxy.proxy_server.user_api_key_auth(): Exception occured - Malformed API Key passed in. Ensure Key has `Bearer ` prefix.
+Requester IP Address:118.193.36.56
+Traceback (most recent call last):
+  File "/home/ubuntu/deepseek-opencode/deepseek-v4-2/.venv-litellm/lib/python3.14/site-packages/litellm/proxy/auth/user_api_key_auth.py", line 1631, in _user_api_key_auth_builder
+    raise Exception("Malformed API Key passed in. Ensure Key has `Bearer ` prefix.")
+Exception: Malformed API Key passed in. Ensure Key has `Bearer ` prefix.
+INFO:     118.193.36.56:53232 - "GET /mcp HTTP/1.1" 401 Unauthorized
+INFO:     118.193.36.56:59492 - "GET /mcp-sse HTTP/1.1" 404 Not Found
+INFO:     69.5.169.115:13154 - "GET / HTTP/1.1" 200 OK
+INFO:     69.5.169.108:12886 - "GET /swagger/favicon.png HTTP/1.1" 200 OK
+INFO:     69.5.169.88:5026 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+INFO:     69.5.169.108:12894 - "GET /api/mcp HTTP/1.1" 404 Not Found
+INFO:     69.5.169.79:15058 - "GET / HTTP/1.1" 200 OK
+01:28:33 - LiteLLM Proxy:ERROR: auth_exception_handler.py:118 - litellm.proxy.proxy_server.user_api_key_auth(): Exception occured - Malformed API Key passed in. Ensure Key has `Bearer ` prefix.
+Requester IP Address:194.88.98.103
+Traceback (most recent call last):
+  File "/home/ubuntu/deepseek-opencode/deepseek-v4-2/.venv-litellm/lib/python3.14/site-packages/litellm/proxy/auth/user_api_key_auth.py", line 1631, in _user_api_key_auth_builder
+    raise Exception("Malformed API Key passed in. Ensure Key has `Bearer ` prefix.")
+Exception: Malformed API Key passed in. Ensure Key has `Bearer ` prefix.
+INFO:     194.88.98.103:9614 - "GET /mcp/ HTTP/1.1" 401 Unauthorized
+01:28:34 - LiteLLM Proxy:ERROR: auth_exception_handler.py:118 - litellm.proxy.proxy_server.user_api_key_auth(): Exception occured - Malformed API Key passed in. Ensure Key has `Bearer ` prefix.
+Requester IP Address:193.124.20.230
+Traceback (most recent call last):
+  File "/home/ubuntu/deepseek-opencode/deepseek-v4-2/.venv-litellm/lib/python3.14/site-packages/litellm/proxy/auth/user_api_key_auth.py", line 1631, in _user_api_key_auth_builder
+    raise Exception("Malformed API Key passed in. Ensure Key has `Bearer ` prefix.")
+Exception: Malformed API Key passed in. Ensure Key has `Bearer ` prefix.
+INFO:     193.124.20.230:14910 - "GET /mcp HTTP/1.1" 401 Unauthorized
+01:28:34 - LiteLLM Proxy:ERROR: auth_exception_handler.py:118 - litellm.proxy.proxy_server.user_api_key_auth(): Exception occured - Malformed API Key passed in. Ensure Key has `Bearer ` prefix.
+Requester IP Address:69.5.169.36
+Traceback (most recent call last):
+  File "/home/ubuntu/deepseek-opencode/deepseek-v4-2/.venv-litellm/lib/python3.14/site-packages/litellm/proxy/auth/user_api_key_auth.py", line 1631, in _user_api_key_auth_builder
+    raise Exception("Malformed API Key passed in. Ensure Key has `Bearer ` prefix.")
+Exception: Malformed API Key passed in. Ensure Key has `Bearer ` prefix.
+01:28:34 - LiteLLM Proxy:ERROR: auth_exception_handler.py:118 - litellm.proxy.proxy_server.user_api_key_auth(): Exception occured - Malformed API Key passed in. Ensure Key has `Bearer ` prefix.
+Requester IP Address:69.5.169.76
+Traceback (most recent call last):
+  File "/home/ubuntu/deepseek-opencode/deepseek-v4-2/.venv-litellm/lib/python3.14/site-packages/litellm/proxy/auth/user_api_key_auth.py", line 1631, in _user_api_key_auth_builder
+    raise Exception("Malformed API Key passed in. Ensure Key has `Bearer ` prefix.")
+Exception: Malformed API Key passed in. Ensure Key has `Bearer ` prefix.
+INFO:     69.5.169.76:1592 - "POST /mcp/ HTTP/1.1" 401 Unauthorized
+INFO:     69.5.169.36:8998 - "POST /mcp HTTP/1.1" 401 Unauthorized
+INFO:     69.5.169.38:16132 - "GET /sse HTTP/1.1" 404 Not Found
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+INFO:     66.132.172.221:13672 - "GET / HTTP/1.1" 200 OK
+WARNING:  Invalid HTTP request received.
+INFO:     66.132.172.221:12884 - "GET / HTTP/1.1" 200 OK
+INFO:     66.132.172.221:12910 - "PRI %2A HTTP/2.0" 404 Not Found
+WARNING:  Invalid HTTP request received.
+INFO:     66.132.172.221:12926 - "GET /swagger/favicon.png HTTP/1.1" 200 OK
+INFO:     66.132.172.221:12932 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+WARNING:  Invalid HTTP request received.
+INFO:     66.132.172.221:57646 - "GET /health/readiness HTTP/1.1" 200 OK
+INFO:     66.132.172.221:57662 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+WARNING:  Invalid HTTP request received.
+INFO:     66.132.172.221:5282 - "GET /security.txt HTTP/1.1" 404 Not Found
